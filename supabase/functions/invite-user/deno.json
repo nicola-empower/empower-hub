@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "lib": ["deno.unstable"],
+    "strict": true
+  }
+}
