@@ -195,23 +195,31 @@ export default function ManageProjectPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 p-6 bg-gray-50 rounded-xl border">
           <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Project Start Date</label>
-
-{/* Line 198: Applied the '?? null' fix for the date error */}
-<input 
-  type="date" 
-  value={formatDateForInput(project?.start_date ?? null)} 
-  onChange={(e) => handleProjectDateChange(e.target.value, 'start_date')} 
-  className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300" 
-/>
+              <input 
+                type="date" 
+                value={formatDateForInput(project?.start_date ?? null)} 
+                onChange={(e) => handleProjectDateChange(e.target.value, 'start_date')} 
+                className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300" 
+              />
           </div>
           
           <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Project Due Date</label>
-              <input type="date" value={formatDateForInput(project?.due_date)} onChange={(e) => handleProjectDateChange(e.target.value, 'due_date')} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300" />
+              <input 
+                type="date" 
+                value={formatDateForInput(project?.due_date ?? null)} 
+                onChange={(e) => handleProjectDateChange(e.target.value, 'due_date')} 
+                className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300" 
+              />
           </div>
           <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Project Completed Date</label>
-              <input type="date" value={formatDateForInput(project?.completed_date)} onChange={(e) => handleProjectDateChange(e.target.value, 'completed_date')} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300" />
+              <input 
+                type="date" 
+                value={formatDateForInput(project?.completed_date ?? null)} 
+                onChange={(e) => handleProjectDateChange(e.target.value, 'completed_date')} 
+                className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300" 
+              />
           </div>
         </div>
         
