@@ -108,7 +108,13 @@ export default function ProjectsPage() {
             const { error: milestonesError } = await supabase.from('project_milestones').insert(milestonesToInsert);
             if (milestonesError) throw new Error(`Project created, but failed to add milestones: ${milestonesError.message}`);
             
-            const newProjectForUI: Project = { ...projectData, client_name: clients.find(c => c.client_id === selectedClientId)?.name || 'Unknown Client', milestones: milestonesToInsert as Milestone[] };
+            // --- FIX APPLIED HERE: Added 'as unknown' before 'as Milestone[]' ---
+            const newProjectForUI: Project = { 
+                ...projectData, 
+                client_name: clients.find(c => c.client_id === selectedClientId)?.name || 'Unknown Client', 
+                milestones: milestonesToInsert as unknown as Milestone[] 
+            };
+            
             setProjects(prevProjects => [newProjectForUI, ...prevProjects]);
             
             setView('list');
