@@ -1,4 +1,3 @@
-// src/app/my-hub/tasks/page.tsx
 'use client';
 
 import { useState, useEffect, Fragment } from 'react';
@@ -89,6 +88,7 @@ export default function AdminTasksPage() {
 
     // Handle deleting a task
     const handleDeleteTask = async (taskId: string) => {
+        // Optimistically update UI
         setTasks(prev => prev.filter(t => t.id !== taskId));
 
         const { error } = await supabase
@@ -99,7 +99,8 @@ export default function AdminTasksPage() {
         if (error) {
             showToast('Failed to delete task.', 'error');
             const failedTask = tasks.find(t => t.id === taskId);
-            if (failedTask) setTodos(prev => [...prev, failedTask]);
+            // --- FIX IS HERE: Changed setTodos to setTasks ---
+            if (failedTask) setTasks(prev => [...prev, failedTask]);
         } else {
             showToast('Task deleted.', 'success');
         }
